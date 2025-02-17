@@ -4,13 +4,22 @@ import styles from './Sidebar.module.css'
 import {Link} from 'react-router'
 
 const Sidebar = () => {
+    const [isLoading,setIsLoading] = useState(false);
     const [categories, setCategories] = useState([]);
     useEffect(() => {
+        setIsLoading(true);
         axios.get("https://dummyjson.com/products/categories")
             .then(response => setCategories(response.data))
-            .catch(error => console.error("Ошибка загрузки категорий:", error));
+            .catch(error => console.error("Ошибка загрузки категорий:", error))
+            .finally(()=> setIsLoading(false));
     }, []);
-    
+    if (isLoading) {
+      return (
+          <div>
+              Идет загрузка
+          </div>
+      )
+        }
     return (
       <aside className={styles.sidebar}>
         <ul>

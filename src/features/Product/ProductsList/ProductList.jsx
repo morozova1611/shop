@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 
 const ProductList = () => {
     const { category } = useParams();
+    const [isLoading,setIsLoading] = useState(false);
     const [products,setProducts] = useState([]);
 
     useEffect(() => {
@@ -14,8 +15,16 @@ const ProductList = () => {
         axios
         .get(url)
         .then(response=>setProducts(response.data.products))
-        .catch(error => console.error("Ошибка загрузки товаров:", error));
+        .catch(error => console.error("Ошибка загрузки товаров:", error))
+        .finally(()=> setIsLoading(false));
     }, [category]);
+    if (isLoading) {
+        return (
+            <div>
+                Идет загрузка
+            </div>
+        )
+          }
 
     return (
         <div>
