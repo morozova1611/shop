@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import ProductCard from '../../../components/ui/ProductCard/ProductCard';
+import { Pagination } from "@mui/material";
 import styles from './ProductList.module.css'
 import Button from '../../../components/ui/Button/Button';
 
@@ -53,20 +54,14 @@ const ProductList = () => {
                         price={product.price}
                     />
                 ))}
-            </div>
+            </div>          
 
-            <div className={styles.pagination}>
-                <Button onClick={() => setPage(prev => prev - 1)} disabled={page === 1}>
-                    Назад
-                </Button>
-                <span>Страница {page}</span>
-                <Button
-                    onClick={() => setPage(prev => prev + 1)}
-                    disabled={page * limit >= totalProducts}
-                >
-                    Вперед
-                </Button>
-            </div>
+            <Pagination
+                count={Math.ceil(totalProducts / limit)}
+                page={page} 
+                onChange={(_, num) => setPage(num)} 
+                className={styles.pagination}
+            />
         </div>
     )
 }
