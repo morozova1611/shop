@@ -1,0 +1,18 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.pagination {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem; 
+    flex-wrap: wrap;
+}
