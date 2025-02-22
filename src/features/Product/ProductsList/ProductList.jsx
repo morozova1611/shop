@@ -5,6 +5,7 @@ import ProductCard from '../../../components/ui/ProductCard/ProductCard';
 import { Pagination } from "@mui/material";
 import styles from './ProductList.module.css'
 import Button from '../../../components/ui/Button/Button';
+import { SERVER_URL } from '../../../constants/constnts';
 
 const ProductList = () => {
     const { category } = useParams();
@@ -23,8 +24,8 @@ const ProductList = () => {
         setIsLoading(true);
         const skip = (page - 1) * limit;
         const url = category
-            ? `https://dummyjson.com/products/category/${category}?limit=${limit}&skip=${skip}`
-            : `https://dummyjson.com/products?limit=${limit}&skip=${skip}`;
+            ? `${SERVER_URL}/products/category/${category}?limit=${limit}&skip=${skip}`
+            : `${SERVER_URL}/products?limit=${limit}&skip=${skip}`;
         axios
             .get(url)
             .then(response => {
@@ -48,6 +49,7 @@ const ProductList = () => {
             <div className={styles.products}>
                 {products.map(product => (
                     <ProductCard key={product.id}
+                        id={product.id}
                         image={product.thumbnail}
                         title={product.title}
                         description={product.description}
