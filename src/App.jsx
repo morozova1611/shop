@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, RouterProvider } from "react-router-dom"
 import router from "./constants/routes"
 import { createTheme, ThemeProvider } from '@mui/material'
+import { CustomThemeProvider } from "./contexts/CustomThemeProvider/CustomThemeProvider"
+import { CartProvider } from "./contexts/CartContext/CartContext"
 
 const theme = createTheme({
   palette: {
@@ -22,9 +24,13 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <RouterProvider router={router}>
+      <CustomThemeProvider value="dark">
+        <CartProvider>
+        <RouterProvider router={router}>
 
-      </RouterProvider>
+        </RouterProvider>
+        </CartProvider>
+      </CustomThemeProvider>
     </ThemeProvider>
   )
 }

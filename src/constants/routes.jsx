@@ -4,6 +4,7 @@ import Home from '../pages/Home/Home';
 import Product from '../pages/Product/Product';
 import Cart from '../pages/Cart/Cart';
 import { pageRoutes } from "./pageRoutes";
+import ProductDetail from "../features/Product/ProductDetail/ProductDetail";
 
 const router = createBrowserRouter([
     {
@@ -21,8 +22,8 @@ const router = createBrowserRouter([
             element: <Cart></Cart>,
         },
         {
-            path: pageRoutes.cartRoutes.product,
-            element: <Product />,
+            path: pageRoutes.productRoutes.product,
+            element: <ProductDetail />,
         },
         ],
     }

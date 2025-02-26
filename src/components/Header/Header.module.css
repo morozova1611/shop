@@ -3,3 +3,8 @@
     padding: 1.6rem;
     justify-content: space-between;
 }
+
+.wrapper__btns {
+    display: flex;
+    
+}
